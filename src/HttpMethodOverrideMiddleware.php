@@ -14,6 +14,13 @@ final class HttpMethodOverrideMiddleware
         $this->service = $service;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @param callable $next
+     *
+     * @return $response
+     */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
         $method = $request->getMethod();

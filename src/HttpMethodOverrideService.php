@@ -33,7 +33,7 @@ final class HttpMethodOverrideService
     {
         $this->methodMap = $methodMap;
 
-        if ($overrideHeaders !== null) {
+        if (!empty($overrideHeaders)) {
             $this->overrideHeaders = $overrideHeaders;
         }
     }
