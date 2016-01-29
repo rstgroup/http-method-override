@@ -4,21 +4,22 @@ namespace RstGroup\HttpMethodOverride;
 
 use Zend\EventManager\AbstractListenerAggregate;
 use Zend\EventManager\EventManagerInterface;
+use Zend\Http\Request;
 use Zend\Mvc\MvcEvent;
 
 class HttpMethodOverrideListener extends AbstractListenerAggregate
 {
     /**
-     * @var HttpMethodOverride
+     * @var HttpMethodOverrideService
      */
-    protected $httpMethodOverride;
+    protected $httpMethodOverrideService;
 
     /**
-     * @param HttpMethodOverride $httpMethodOverride
+     * @param HttpMethodOverrideService $httpMethodOverride
      */
-    public function __construct(HttpMethodOverride $httpMethodOverride)
+    public function __construct(HttpMethodOverrideService $httpMethodOverride)
     {
-        $this->httpMethodOverride = $httpMethodOverride;
+        $this->httpMethodOverrideService = $httpMethodOverride;
     }
 
     /**
@@ -26,7 +27,7 @@ class HttpMethodOverrideListener extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, array($this, 'override'), 100);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_ROUTE, [$this, 'override'], 100);
     }
 
     /**
@@ -35,6 +36,18 @@ class HttpMethodOverrideListener extends AbstractListenerAggregate
     public function override(MvcEvent $event)
     {
         $request = $event->getRequest();
-        $this->httpMethodOverride->override($request);
+
+        if (!$request instanceof Request) {
+            return;
+        }
+
+        $method = $request->getMethod();
+        $headers = $request->getHeaders()->toArray();
+
+        $overridedMethod = $this->httpMethodOverrideService->getOverridedMethod($method, $headers);
+
+        if ($overridedMethod !== $method) {
+            $request->setMethod($overridedMethod);
+        }
     }
 }
