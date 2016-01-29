@@ -7,7 +7,7 @@ use Zend\EventManager\EventManagerInterface;
 use Zend\Http\Request;
 use Zend\Mvc\MvcEvent;
 
-class HttpMethodOverrideListener extends AbstractListenerAggregate
+final class HttpMethodOverrideListener extends AbstractListenerAggregate
 {
     /**
      * @var HttpMethodOverrideService

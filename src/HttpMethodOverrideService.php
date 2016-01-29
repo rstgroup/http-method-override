@@ -58,6 +58,14 @@ final class HttpMethodOverrideService
     }
 
     /**
+     * @return array
+     */
+    public function getOverrideHeaders()
+    {
+        return $this->overrideHeaders;
+    }
+
+    /**
      * @param string $overridedMethodName
      * @param array $map
      *
