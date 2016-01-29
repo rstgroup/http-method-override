@@ -30,7 +30,7 @@ class HttpMethodOverrideMiddlewareTest extends PHPUnit_Framework_TestCase
         };
 
         $result = call_user_func($this->middleware, $request, $response, $next);
-        
+
         $this->assertSame($response, $result);
     }
 
