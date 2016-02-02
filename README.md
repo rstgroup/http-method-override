@@ -1,21 +1,21 @@
 # http-method-override [![Build Status](https://travis-ci.org/rstgroup/http-method-override.svg?branch=master)](https://travis-ci.org/rstgroup/http-method-override)
 HTTP method override service
 
-Library allow to override method by header. Why? Because some clients cannot send custom method. It can be used as
-PSR-7 middeware or Zend Framework 2 module.
+This library allows you to override HTTP method using HTTP header ie. `X-HTTP-Method-Override`. Why? Because some clients
+cannot send non-standard methods like ie. `LINK`. It can be used as PSR-7 middeware or Zend Framework 2 module.
 
 ## Installation
 
 ```json
 {
     "require": {
-        "rstgroup/http-method-override": "dev-master"
+        "rstgroup/http-method-override": "^1.0"
     }
 }
 ```
 
-You need to configure how it's possible to override methods. To do that you need to create/modify `config` service in
-your dependecy container:
+You need to configure how it's possible to override methods. To do that you need to create/modify configuration provided
+by service which must exists in your dependecy container (as `config` key):
 
 ```php
 return [
