@@ -14,6 +14,8 @@ cannot send non-standard methods like ie. `LINK`. It can be used as PSR-7 middew
 }
 ```
 
+Check suggested dependencies in [composer.json](composer.json) and add it to your dependencies.
+
 You need to configure how it's possible to override methods. To do that you need to create/modify configuration provided
 by service which must exists in your dependecy container (as `config` key):
 

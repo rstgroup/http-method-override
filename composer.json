@@ -7,10 +7,11 @@
         "psr",
         "psr-7",
         "http",
-        "http method overrive"
+        "http method overrive",
+        "module"
     ],
     "require": {
-        "php": ">=5.5"
+        "php": "^5.5 || ^7.0"
     },
     "require-dev": {
         "psr/http-message": "^1.0",
@@ -20,6 +21,13 @@
         "zendframework/zend-mvc": "^2.4",
         "zendframework/zend-diactoros": "^1.3.3",
         "zendframework/zend-modulemanager": "^2.4"
+    },
+    "suggest": {
+        "zendframework/zend-http": "To use rstgroup/http-method-override as ZF2 module",
+        "zendframework/zend-eventmanager": "To use rstgroup/http-method-override as ZF2 module",
+        "zendframework/zend-mvc": "To use rstgroup/http-method-override as ZF2 module",
+        "zendframework/zend-modulemanager": "To use rstgroup/http-method-override as ZF2 module",
+        "psr/http-message": "To use rstgroup/http-method-override as middleware"
     },
     "autoload": {
         "psr-4": {
