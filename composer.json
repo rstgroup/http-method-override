@@ -1,0 +1,34 @@
+{
+    "name": "rstgroup/http-method-override",
+    "description": "HTTP method override service",
+    "type": "library",
+    "keywords": [
+        "middleware",
+        "psr",
+        "psr-7",
+        "http",
+        "http method overrive"
+    ],
+    "require": {
+        "php": ">=5.5"
+    },
+    "require-dev": {
+        "psr/http-message": "^1.0",
+        "phpunit/phpunit": "^4.8.21",
+        "zendframework/zend-http": "^2.4",
+        "zendframework/zend-eventmanager": "^2.4",
+        "zendframework/zend-mvc": "^2.4",
+        "zendframework/zend-diactoros": "^1.3.3",
+        "zendframework/zend-modulemanager": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "RstGroup\\HttpMethodOverride\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RstGroup\\HttpMethodOverride\\Test\\": "test/"
+        }
+    }
+}
