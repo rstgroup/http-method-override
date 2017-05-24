@@ -6,12 +6,8 @@ cannot send non-standard methods like ie. `LINK`. It can be used as PSR-7 middew
 
 ## Installation
 
-```json
-{
-    "require": {
-        "rstgroup/http-method-override": "^1.0"
-    }
-}
+```
+composer require rstgroup/http-method-override
 ```
 
 Check suggested dependencies in [composer.json](composer.json) and add it to your dependencies.

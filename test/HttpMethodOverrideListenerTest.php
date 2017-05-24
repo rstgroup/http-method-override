@@ -2,7 +2,7 @@
 
 namespace RstGroup\HttpMethodOverride\Test;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use RstGroup\HttpMethodOverride\HttpMethodOverrideListener;
 use RstGroup\HttpMethodOverride\HttpMethodOverrideService;
 use Zend\EventManager\EventManagerInterface;
@@ -10,7 +10,7 @@ use Zend\Http\Request;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\RequestInterface;
 
-class HttpMethodOverrideListenerTest extends PHPUnit_Framework_TestCase
+class HttpMethodOverrideListenerTest extends TestCase
 {
     protected $listener;
 
@@ -53,7 +53,7 @@ class HttpMethodOverrideListenerTest extends PHPUnit_Framework_TestCase
 
     public function testNoneHtmlRequest()
     {
-        $request = $this->getMock(RequestInterface::class);
+        $request = $this->createMock(RequestInterface::class);
 
         $event = new MvcEvent();
         $event->setRequest($request);
@@ -67,7 +67,7 @@ class HttpMethodOverrideListenerTest extends PHPUnit_Framework_TestCase
 
     public function testAttach()
     {
-        $eventManager = $this->getMock(EventManagerInterface::class);
+        $eventManager = $this->createMock(EventManagerInterface::class);
         $eventManager->expects($this->once())->method('attach')->willReturnCallback(function($name, $callback){
             $this->assertTrue(is_callable($callback));
         });

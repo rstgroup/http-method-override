@@ -2,14 +2,14 @@
 
 namespace RstGroup\HttpMethodOverride\Test;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RstGroup\HttpMethodOverride\HttpMethodOverrideMiddleware;
 use RstGroup\HttpMethodOverride\HttpMethodOverrideService;
 use Zend\Diactoros\ServerRequest;
 
-class HttpMethodOverrideMiddlewareTest extends PHPUnit_Framework_TestCase
+class HttpMethodOverrideMiddlewareTest extends TestCase
 {
     protected $middleware;
 
@@ -22,8 +22,8 @@ class HttpMethodOverrideMiddlewareTest extends PHPUnit_Framework_TestCase
 
     public function testCallNext()
     {
-        $request = $this->getMock(ServerRequestInterface::class);
-        $response = $this->getMock(ResponseInterface::class);
+        $request = $this->createMock(ServerRequestInterface::class);
+        $response = $this->createMock(ResponseInterface::class);
 
         $next = function(ServerRequestInterface $request, ResponseInterface $response)  {
             return $response;
@@ -40,7 +40,7 @@ class HttpMethodOverrideMiddlewareTest extends PHPUnit_Framework_TestCase
         $request = $request->withHeader(HttpMethodOverrideService::OVERRIDE_HEADER, 'PUT');
         $request = $request->withMethod('POST');
 
-        $response = $this->getMock(ResponseInterface::class);
+        $response = $this->createMock(ResponseInterface::class);
 
         $next = function(ServerRequestInterface $request)  {
             $this->assertSame('PUT', $request->getMethod());
@@ -55,7 +55,7 @@ class HttpMethodOverrideMiddlewareTest extends PHPUnit_Framework_TestCase
         $request = $request->withHeader(HttpMethodOverrideService::OVERRIDE_HEADER, 'GET');
         $request = $request->withMethod('POST');
 
-        $response = $this->getMock(ResponseInterface::class);
+        $response = $this->createMock(ResponseInterface::class);
 
         $next = function(ServerRequestInterface $request)  {
             $this->assertSame('POST', $request->getMethod());
