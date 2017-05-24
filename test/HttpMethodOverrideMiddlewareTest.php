@@ -49,6 +49,21 @@ class HttpMethodOverrideMiddlewareTest extends TestCase
         call_user_func($this->middleware, $request, $response, $next);
     }
 
+    public function testRequestHasOverridedMethod()
+    {
+        $request = new ServerRequest();
+        $request = $request->withHeader(HttpMethodOverrideService::OVERRIDE_HEADER, 'PUT');
+        $request = $request->withMethod('POST');
+
+        $response = $this->createMock(ResponseInterface::class);
+
+        $next = function(ServerRequestInterface $request)  {
+            $this->assertSame('POST', $request->getAttribute('overrided-method'));
+        };
+
+        call_user_func($this->middleware, $request, $response, $next);
+    }
+
     public function testNotOverride()
     {
         $request = new ServerRequest();

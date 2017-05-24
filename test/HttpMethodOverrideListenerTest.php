@@ -36,6 +36,21 @@ class HttpMethodOverrideListenerTest extends TestCase
         $this->assertSame('PUT', $request->getMethod());
     }
 
+    public function testEventContainsOverridedMethod()
+    {
+        $request = new Request();
+        $request->setMethod('POST');
+
+        $request->getHeaders()->addHeaderLine(HttpMethodOverrideService::OVERRIDE_HEADER, 'PUT');
+
+        $event = new MvcEvent();
+        $event->setRequest($request);
+
+        $this->listener->override($event);
+
+        $this->assertSame('POST', $event->getParam('overrided-method'));
+    }
+
     public function testNotOverride()
     {
         $request = new Request();

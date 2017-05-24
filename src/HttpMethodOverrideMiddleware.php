@@ -26,9 +26,10 @@ final class HttpMethodOverrideMiddleware implements MiddlewareInterface
         $overridedHeader = $this->service->getOverridedMethod($method, $headers);
 
         if ($method !== $overridedHeader) {
-            $request = $request->withMethod($overridedHeader);
+            $request = $request
+                ->withMethod($overridedHeader)
+                ->withAttribute('overrided-method', $method);
         }
-
         return $delegate->process($request);
     }
 

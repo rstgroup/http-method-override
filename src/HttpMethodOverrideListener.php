@@ -48,6 +48,7 @@ final class HttpMethodOverrideListener extends AbstractListenerAggregate
 
         if ($overridedMethod !== $method) {
             $request->setMethod($overridedMethod);
+            $event->setParam('overrided-method', $method);
         }
     }
 }
