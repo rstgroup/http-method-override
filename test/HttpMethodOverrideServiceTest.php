@@ -3,10 +3,10 @@
 namespace RstGroup\HttpMethodOverride\Test;
 
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use RstGroup\HttpMethodOverride\HttpMethodOverrideService;
 
-class HttpMethodOverrideServiceTest extends PHPUnit_Framework_TestCase
+class HttpMethodOverrideServiceTest extends TestCase
 {
     /**
      * @dataProvider notmethodInMapProvider
@@ -74,7 +74,7 @@ class HttpMethodOverrideServiceTest extends PHPUnit_Framework_TestCase
     {
         $object = new HttpMethodOverrideService(['POST' => 'NONE']);
 
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $object->getOverridedMethod('POST', [
             HttpMethodOverrideService::OVERRIDE_HEADER_GOOGLE => 'NONE',
