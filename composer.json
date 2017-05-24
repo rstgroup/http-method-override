@@ -21,14 +21,18 @@
         "zendframework/zend-eventmanager": "^2.4 || ^3.0",
         "zendframework/zend-mvc": "^2.4 || ^3.0",
         "zendframework/zend-diactoros": "^1.3.3",
-        "zendframework/zend-modulemanager": "^2.4"
+        "zendframework/zend-modulemanager": "^2.4",
+        "php-middleware/double-pass-compatibility": "^1.0",
+        "http-interop/http-middleware": "^0.4.1"
     },
     "suggest": {
         "zendframework/zend-http": "To use rstgroup/http-method-override as ZF module",
         "zendframework/zend-eventmanager": "To use rstgroup/http-method-override as ZF module",
         "zendframework/zend-mvc": "To use rstgroup/http-method-override as ZF module",
         "zendframework/zend-modulemanager": "To use rstgroup/http-method-override as ZF module",
-        "psr/http-message": "To use rstgroup/http-method-override as middleware"
+        "psr/http-message": "To use rstgroup/http-method-override as middleware",
+        "php-middleware/double-pass-compatibility": "To use rstgroup/http-method-override as middleware",
+        "http-interop/http-middleware": "To use rstgroup/http-method-override as middleware"
     },
     "autoload": {
         "psr-4": {

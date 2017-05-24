@@ -2,11 +2,15 @@
 
 namespace RstGroup\HttpMethodOverride;
 
-use Psr\Http\Message\ResponseInterface;
+use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use PhpMiddleware\DoublePassCompatibilityTrait;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class HttpMethodOverrideMiddleware
+final class HttpMethodOverrideMiddleware implements MiddlewareInterface
 {
+    use DoublePassCompatibilityTrait;
+
     private $service;
 
     public function __construct(HttpMethodOverrideService $service)
@@ -14,14 +18,7 @@ final class HttpMethodOverrideMiddleware
         $this->service = $service;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
-     * @param callable $next
-     *
-     * @return $response
-     */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
+    public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         $method = $request->getMethod();
         $headers = $this->getHeadersFromRequest($request);
@@ -32,7 +29,7 @@ final class HttpMethodOverrideMiddleware
             $request = $request->withMethod($overridedHeader);
         }
 
-        return $next($request, $response);
+        return $delegate->process($request);
     }
 
     /**

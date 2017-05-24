@@ -43,6 +43,6 @@ Use [Expressive Configuration Manager](https://github.com/mtymek/expressive-conf
 After this you can enable middleware in your middleware-stack using `RstGroup\HttpMethodOverride\HttpMethodOverrideMiddleware`
 service name in your container.
 
-### Specific installation for Zend Framework 2
+### Specific installation for Zend Framework 2 & 3
 
 Add module `RstGroup\HttpMethodOverride` to `application.config.php` file.
