@@ -46,10 +46,13 @@ final class HttpMethodOverrideService
      */
     public function getOverridedMethod($method, array $headers)
     {
+        $headers = array_change_key_case($headers, CASE_LOWER);
+
         if (! isset($this->methodMap[$method])) {
             return $method;
         }
         foreach ($this->overrideHeaders as $overrideHeader) {
+            $overrideHeader = strtolower($overrideHeader);
             if (isset($headers[$overrideHeader]) && $this->isMethodInMap($headers[$overrideHeader], $this->methodMap[$method])) {
                 return $headers[$overrideHeader];
             }

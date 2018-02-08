@@ -20,7 +20,7 @@ class HttpMethodOverrideServiceTest extends TestCase
         $this->assertSame('GET', $result);
     }
 
-    public function notmethodInMapProvider()
+    public function notMethodInMapProvider()
     {
         return [
             [[]],
@@ -59,6 +59,17 @@ class HttpMethodOverrideServiceTest extends TestCase
         ]);
 
         $this->assertNotEquals('NONE', $result);
+    }
+
+    public function testOverrideHeaderIsNotCaseSensitive()
+    {
+        $object = new HttpMethodOverrideService(['POST' => ['PUT']]);
+
+        $result = $object->getOverridedMethod('POST', [
+            strtolower(HttpMethodOverrideService::OVERRIDE_HEADER_GOOGLE) => 'PUT',
+        ]);
+
+        $this->assertSame('PUT', $result);
     }
 
     public function testOverrideWithHeaderButNotInMap()
